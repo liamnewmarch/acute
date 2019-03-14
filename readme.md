@@ -11,7 +11,7 @@ Acute components are defined as objects. This pattern works nicely with modules:
 __HelloWorld.js__
 
 ```javascript
-import { html } from 'acutejs';
+import { html } from '@acutejs/plugin-lit-html';
 
 export default {
   props: {
@@ -25,7 +25,11 @@ export default {
     }
   },
   render({ greeting, name }) {
-    return html`<p>${ greeting }, ${ name }</p>`;
+    return html`
+      <p>
+        ${ greeting }, ${ name }
+      </p>
+    `;
   },
 };
 ```
@@ -37,13 +41,17 @@ The `createApp` is used to register components with Acute.
 __app.js__
 
 ```javascript
-import { createApp } from 'acutejs';
+import { createApp } from '@acutejs/core';
+import litHtml from '@acutejs/plugin-lit-html';
 import HelloWorld from './HelloWorld.js';
 
 createApp({
   components: {
     HelloWorld,
   },
+  plugins: [
+    litHtml,
+  ]
 });
 ```
 
@@ -64,3 +72,4 @@ __index.html__
   </body>
 </html>
 ```
+

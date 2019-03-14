@@ -1,10 +1,10 @@
 {
-  "name": "acutejs",
-  "version": "0.0.0",
+  "name": "@acutejs/core",
+  "version": "0.0.2",
   "description": "Acute is a lightweight but opinionated framework that allows you to build web apps using web components.",
-  "main": "acute.js",
+  "main": "index.js",
   "scripts": {
-    "test": "eslint acute.js"
+    "test": "eslint index.js"
   },
   "repository": {
     "type": "git",
@@ -20,5 +20,6 @@
     "babel-eslint": "^10.0.1",
     "eslint": "^5.15.1",
     "eslint-config-google": "^0.12.0"
-  }
+  },
+  "dependencies": {}
 }
