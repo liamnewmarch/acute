@@ -2,38 +2,42 @@
 
 Acute is a lightweight but opinionated framework that allows you to build web apps using web components.
 
-It abstracts away some of the more tedious and repetitive parts of authoring custom elements, such as attribute-property binding, event handling and templating.A
+It abstracts away some of the more tedious and repetitive parts of authoring custom elements, such as attribute-property binding, event handling and templating.
 
 ## A simple component
 
-Acute components are defined as objects. This pattern works really nicely with modules:
+Acute components are defined as objects. This pattern works nicely with modules:
 
 __HelloWorld.js__
 
 ```javascript
+import { html } from 'acutejs';
+
 export default {
   props: {
-    greeting: String,
-    name: String,
-  },
-  state: {
-    greeting: 'Hello',
-    name: 'world',
+    greeting: {
+      default: 'Hello',
+      type: String,
+    },
+    name: {
+      default: 'world',
+      type: String,
+    }
   },
   render({ greeting, name }) {
-    html`<p>${ greeting }, ${ name }</p>`;
+    return html`<p>${ greeting }, ${ name }</p>`;
   },
 };
 ```
 
 ## The `createApp` function
 
-The `createApp` is used to register components with Acute. When an app is created, unknown elements encountered in the DOM are loaded lazily.
+The `createApp` is used to register components with Acute.
 
 __app.js__
 
 ```javascript
-import { createApp } from 'acute';
+import { createApp } from 'acutejs';
 import HelloWorld from './HelloWorld.js';
 
 createApp({
@@ -53,11 +57,10 @@ __index.html__
 <!DOCTYPE html>
 <html>
   <head>
-    <!-- ... -->
+    <script async src="bundle.js"></script>
   </head>
   <body>
     <hello-world name="Acute"></hello-world>
   </body>
 </html>
 ```
-

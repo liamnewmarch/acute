@@ -1,0 +1,24 @@
+{
+  "name": "acutejs",
+  "version": "0.0.0",
+  "description": "Acute is a lightweight but opinionated framework that allows you to build web apps using web components.",
+  "main": "acute.js",
+  "scripts": {
+    "test": "eslint acute.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/liamnewmarch/acutejs.git"
+  },
+  "keywords": [],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/liamnewmarch/acutejs/issues"
+  },
+  "homepage": "https://github.com/liamnewmarch/acutejs#readme",
+  "devDependencies": {
+    "babel-eslint": "^10.0.1",
+    "eslint": "^5.15.1",
+    "eslint-config-google": "^0.12.0"
+  }
+}
