@@ -1,6 +1,6 @@
 {
   "name": "@acutejs/core",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Acute is a lightweight but opinionated framework that allows you to build web apps using web components.",
   "main": "dist/index.esm.js",
   "scripts": {
