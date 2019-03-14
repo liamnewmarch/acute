@@ -1,2 +1,3 @@
-export { default as createApp } from '../src/app.js';
-export { default as createComponent } from '../src/component.js';
+export { createApp } from '../src/app.js';
+export { createComponent } from '../src/component.js';
+export { default as Acute } from '../src/acute.js';
