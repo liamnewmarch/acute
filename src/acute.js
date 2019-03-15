@@ -5,15 +5,18 @@ export default class {
   constructor(element, {
     events = {},
     props = {},
-    render,
-    renderStrategy = defaultRenderStrategy,
+    render = () => {},
+    plugins = [],
   }) {
     this.boundFunctions = new Map();
     this.element = element;
     this.eventListeners = [];
     this.props = {};
-    this.render = render;
-    this.render = renderStrategy(render).bind(this, this);
+    this.renderStrategy = defaultRenderStrategy;
+
+    for (const plugin of plugins) plugin(this);
+
+    this.render = this.renderStrategy(render).bind(this, this);
 
     for (const [key, config] of Object.entries(props)) {
       const descriptor = getDescriptor(config.type)(element, key, config.default);

@@ -7,7 +7,7 @@ export const getTagName = (className) => {
 };
 
 export const createComponent = (className, definition) => {
-  const observedAttributes = Object.keys(definition.props);
+  const observedAttributes = Object.keys(definition.props || {});
   const tagName = getTagName(className);
   return Object.assign(class extends HTMLElement {
     constructor() {
