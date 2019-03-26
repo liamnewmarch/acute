@@ -50,7 +50,7 @@ descriptors.set(Date, (element, key, defaultValue) => ({
   },
 }));
 
-export const getDescriptor = (type) => {
+export function getDescriptor(type) {
   if (descriptors.has(type)) {
     return descriptors.get(type);
   }
@@ -60,4 +60,4 @@ export const getDescriptor = (type) => {
         `Acute: No attribute descriptor for type ${type.name}, using String.`);
   }
   return descriptors.get(String);
-};
+}

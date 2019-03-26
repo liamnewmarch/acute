@@ -1,12 +1,12 @@
 import Acute from './acute.js';
 
-export const getTagName = (className) => {
+export function getTagName(className) {
   const element = document.createElement('div');
   element.dataset[className] = '';
   return element.attributes[0].name.substr(6);
-};
+}
 
-export const createComponent = (className, definition) => {
+export function createComponent(className, definition) {
   const observedAttributes = Object.keys(definition.props || {});
   const tagName = getTagName(className);
 
@@ -37,4 +37,4 @@ export const createComponent = (className, definition) => {
     observedAttributes,
     tagName,
   });
-};
+}
