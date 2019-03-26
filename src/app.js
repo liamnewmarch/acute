@@ -5,10 +5,7 @@ export const createApp = ({
   plugins = [],
 } = {}) => {
   for (const [className, definition] of Object.entries(components)) {
-    const CustomElement = createComponent(className, {
-      ...definition,
-      plugins,
-    });
-    customElements.define(CustomElement.tagName, CustomElement);
+    const Component = createComponent(className, { plugins, ...definition });
+    customElements.define(Component.tagName, Component);
   }
 };

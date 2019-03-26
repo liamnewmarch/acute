@@ -53,8 +53,11 @@ descriptors.set(Date, (element, key, defaultValue) => ({
 export const getDescriptor = (type) => {
   if (descriptors.has(type)) {
     return descriptors.get(type);
-  } else {
-    console.warn(`Acute: No attribute descriptor for type ${type.name}, using String default.`);
-    return descriptors.get(String);
   }
+
+  if ('console' in window) {
+    window.console.warn(
+        `Acute: No attribute descriptor for type ${type.name}, using String.`);
+  }
+  return descriptors.get(String);
 };

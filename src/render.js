@@ -1,8 +1,5 @@
-export const defaultRenderStrategy = (fn) => {
-  return (component) => {
-    const result = fn(component.props);
-    if (component.element.shadowRoot.innerHTML !== result) {
-      component.element.shadowRoot.innerHTML = result;
-    }
-  };
-};
+export function defaultRenderStrategy() {
+  throw new Error(
+      'Acute: No render strategy has been set, use a plugin e.g. ' +
+      '@acutejs/plugin-lit-html');
+}

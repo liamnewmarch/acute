@@ -1,27 +1,37 @@
 import { getDescriptor } from './descriptors.js';
-import { defaultRenderStrategy } from './render.js';
+import defaultRenderStrategy from './render.js';
 
 export default class {
   constructor(element, {
     events = {},
+    methods = {},
+    plugins = [],
     props = {},
     render = () => {},
-    plugins = [],
   }) {
     this.boundFunctions = new Map();
     this.element = element;
     this.eventListeners = [];
+    this.methods = {};
     this.props = {};
     this.renderStrategy = defaultRenderStrategy;
 
     for (const plugin of plugins) plugin(this);
 
-    this.render = this.renderStrategy(render).bind(this, this);
+    this.render = this.renderStrategy(render);
 
     for (const [key, config] of Object.entries(props)) {
       const descriptor = getDescriptor(config.type)(element, key, config.default);
       Object.defineProperty(this.props, key, descriptor);
     }
+
+    for (const [key, fn] of Object.entries(methods)) {
+      Object.defineProperty(this.methods, key, this.bind(fn));
+    }
+
+    Object.freeze(this.methods);
+    Object.freeze(this.props);
+    Object.assign(this.element, this.props, this.methods);
 
     for (const [type, fn] of Object.entries(events)) {
       this.eventListeners.push([type, this.bind(fn)]);

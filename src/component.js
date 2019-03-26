@@ -9,7 +9,8 @@ export const getTagName = (className) => {
 export const createComponent = (className, definition) => {
   const observedAttributes = Object.keys(definition.props || {});
   const tagName = getTagName(className);
-  return Object.assign(class extends HTMLElement {
+
+  class Component extends HTMLElement {
     constructor() {
       super();
       this.attachShadow({ mode: 'open' });
@@ -30,7 +31,9 @@ export const createComponent = (className, definition) => {
     disconnectedCallback() {
       this.acute.emit('disconnect');
     }
-  }, {
+  }
+
+  return Object.assign(Component, {
     observedAttributes,
     tagName,
   });
